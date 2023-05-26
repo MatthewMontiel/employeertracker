@@ -1,4 +1,4 @@
-INSERT INTO dept_area
+INSERT INTO dept(dept_area)
 VALUES ('Central Office'),
        ('Admin'),
        ('IT'),
@@ -6,7 +6,7 @@ VALUES ('Central Office'),
 
 Insert INTO role(title, salary, dept_id)
 VALUES  ('Teacher', 30000, 4),
-        ('Teacher Aid', 20000, 4)
+        ('Teacher Aid', 20000, 4),
         ('Principal', 75000, 2),
         ('Secretary', 25000, 1),
         ('IT Support', 30000, 3);
