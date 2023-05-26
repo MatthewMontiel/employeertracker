@@ -12,7 +12,7 @@ const db = mysql.createConnection({
 const viewTitles = `
 SELECT role.title, role.salary, dept.dept_area
 FROM role
-JOIN dept ON dept.id = role.dept_id;
+JOIN dept ON dept.id = role.dept_id
 `;
 
 const viewEmps = `
@@ -20,7 +20,7 @@ select employee.first_name, employee.last_name, role.title, role.salary, dept.de
 FROM employee
 JOIN role ON employee.role_id = role.id
 JOIN dept ON role.dept_id = dept.id
-LEFT JOIN employee manager ON employee.manager_id = manager.id
+LEFT JOIN employee m ON employee.manager_id = m.id
 `;
 
 function addDept() {
@@ -28,14 +28,14 @@ function addDept() {
     .prompt([
       {
         type: "input",
-        mesage: "What dept are you joining?",
-        name: "addDepartment",
+        message: "What dept are you joining?",
+        name: "addDept",
       },
     ])
     .then((answers) => {
       db.query(
-        "INSERT INTO DEPARTMENT (dept_area) VALUES (?)",
-        [answers.addDepartment],
+        "INSERT INTO DEPT (dept_area) VALUES (?)",
+        [answers.addDept],
         (err, dataRes) => {
           main();
         }
@@ -169,7 +169,7 @@ function main() {
         choices: [
           "View all departments",
           "View all roles",
-          "view all employees",
+          "View all employees",
           "add a department",
           "add a role",
           "add a employee",
@@ -179,26 +179,26 @@ function main() {
     ])
     .then((answers) => {
       switch (answers.action) {
-        case "view all departments":
-          db.query("SELECT * FROM dept;", (err, dataRes) => {
+        case "View all departments":
+          db.query("SELECT * FROM dept", (err, dataRes) => {
             console.table(dataRes);
             main();
           });
           break;
-        case "view all roles":
+        case "View all roles":
           db.query(viewTitles, (err, dataRes) => {
             console.table(dataRes);
             main();
           });
           break;
-        case "view all employees":
+        case "View all employees":
           db.query(viewEmps, (err, dataRes) => {
             console.table(dataRes);
             main();
           });
           break;
         case "add a department":
-          addDepartment();
+          addDept();
           break;
         case "add a role":
           addRole();
@@ -210,7 +210,7 @@ function main() {
           updateRole();
           break;
         default:
-          console.log("Invalid action.");
+          console.log("Not the Droid your looking for");
           main();
           break;
       }

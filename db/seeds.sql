@@ -14,6 +14,6 @@ VALUES  ('Teacher', 30000, 4),
 Insert INTO employee(first_name, last_name, role_id, manager_id)
 VALUES ('Tanya', 'Tardy', 4, NULL),
        ('Sailor', 'Sews', 4, NULL),
-       ('Timothy', 'Tombs', 2, NULL),
+       ('Timothy', 'Tombs', 2, 1),
        ('Victoria', 'Venue', 1, NULL),
        ('Luther', 'Lives', 3, NULL);
